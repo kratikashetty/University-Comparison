@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+svg {
+  margin: auto; /* center horizontally */
+  display: block; /* remove any default margin and padding */
+  border: 2px solid black; /* set a 2-pixel black border */
+}
+
+.radar-shape {
+  stroke-linejoin: round; /* round the stroke linejoins */
+  fill-opacity: 0;
+  pointer-events: stroke;
+}
+
+.unchecked.legend-item {
+  opacity: 0.4;
+}
+.unchecked.legend-item > rect {
+  fill-opacity: 0;
+  stroke-width: 1px;
+}
+.unchecked.radar-shape {
+  display: none;
+}
+
+/* hovers */
+.radar-shape.hover {
+  stroke-width: 6px;
+}
+.radar-shape.not-hover {
+  stroke-opacity: 0.2;
+}
+.legend-item.hover {
+  font-weight: bold;
+}
+.legend-item.hover > rect {
+  stroke-width: 3px;
+  stroke: black;
+}
+
+text {
+  font-family: monospace;
+}

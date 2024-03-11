@@ -1,0 +1,15 @@
+export const mediaColors = {
+  'Carnegie Mellon University': '#653da7',
+  'Clarkson University': '#C13584',
+  'Illinois Institute of Technology': '#20cd1f',
+  'Lehigh University': '#ff4500',
+  'Loyola Marymount University': '#f5ea1d',
+  'Northeastern University': '#42922c',
+  'Rensselaer Polytechnic Institute': '#00f2ea',
+  'Rice University': '#3ab0ff',
+  'Rochester Institute of Technology': '#1977f3',
+  'Stevens Institute of Technology': '#0274b3',
+  'Syracuse University': '#00405d',
+  'Villanova University': '#000000',
+  'Worcester Polytechnic Institute': '#c6201d',
+};

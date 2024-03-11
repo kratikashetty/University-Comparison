@@ -10,12 +10,12 @@ if (height > width) {
   width = height;
 }
 
-export const viz = (container, { state, setState }) => {
+export const viz = async (container, { state, setState }) => {
   // state.data could be:
   // * undefined
   // * 'LOADING'
   // * An array of objects
-  const { data } = state;
+  let { data } = state;
 
   const svg = select(container)
     .selectAll('svg')
@@ -25,37 +25,34 @@ export const viz = (container, { state, setState }) => {
     .attr('height', height);
 
   if (data && data !== 'LOADING') {
-    const bars = radarChart(svg, { data, width, height });
+    radarChart(svg, { data, width, height });
   }
+
+  const tempUrl = 'Radar Chart - peer institutions 2024.csv';
 
   if (data === undefined) {
     setState((state) => ({
       ...state,
       data: 'LOADING',
     }));
-    fetch(
-      'https://gist.githubusercontent.com/kratikashetty/75f63b52c8edebdc235d50cda8752837/raw/9e03d3330a05c18d58d426606f4cace81e83b7ed/Radar%2520Chart%2520-%2520peer%2520institutions%25202024',
-    )
-      .then((response) => response.text())
-      .then((csvString) => {
-        let data = csvParse(csvString);
 
-        const options = [];
-        for (const d of data) {
-          d.S = +d.S;
-          d.D = +d.D;
-          d.C = +d.C;
-          d.A = +d.A;
-          d.Selectivity = +d.Selectivity;
-          options.push(d);
-        }
+    const tempData = await csvParse(tempUrl);
 
-        data = options;
+    const options = [];
+    for (const d of tempData) {
+      d.S = +d.S;
+      d.D = +d.D;
+      d.C = +d.C;
+      d.A = +d.A;
+      d.Selectivity = +d.Selectivity;
+      options.push(d);
+    }
 
-        setState((state) => ({
-          ...state,
-          data,
-        }));
-      });
+    data = options;
+
+    setState((state) => ({
+      ...state,
+      data,
+    }));
   }
 };
